@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Start</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet'>
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/login2.css" rel="stylesheet">
+
+  </head>
+
+  <body class="text-center" background="../static/css/1.jpg">
+
+    <form class="form-signin" action="{{url_for('log')}}" method="POST">
+      <img class="mb-4" src="../static/css/2.png" alt="" width="175" height="175">
+        <h1 class="h3 mb-3 font-weight-normal">Facturacion</h1>
+      <label for="inputUsername" class="sr-only">Nombre</label>
+      <input type="text" id="inputUsername" class="form-control" placeholder="Nombre" name="username" required autofocus>
+      <label for="inputPassword" class="sr-only">Base</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Base de caja" name="password" required><br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Abrir Caja</button>
+    </form>
+  </form>
+  </body>
+</html>
+
+

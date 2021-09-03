@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Moto</title>
+</head>
+<body>
+    <h1>Registro De Motos</h1>
+
+    <div>
+        {% for value in lUsuario %}
+        <p>Usuario: {{value}}</p>
+        {%endfor%}
+    </div>
+     <div>
+        {% for value in lPlaca %}
+        <p>Numero de placa: {{value}}</p>
+        {%endfor%}
+    </div>
+
+    <form action="/guardar" method="POST">
+            <input name="usuario" type="text" placeholder="Usuario"/>
+             <input name="placa" type="text" placeholder="Placa"/>
+        <input type="submit" value="Guardar">
+        </form>
+<div>
+    <p>Resultado De La Busqueda: {{vPro}} mascota: {{vMasco}}</p>
+     <form action="/buscar" method="POST">
+        <input
+                name="bPropietario"
+                type="text">
+                <placeholder>Ingrese Su Nombre</placeholder>
+
+        <input type="submit" value="buscar">
+        </form>
+</div>
+</body>
+</html>

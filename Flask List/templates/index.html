@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mascotas</title>
+</head>
+<body>
+    <h1>Registro De Mascotas</h1>
+
+    <div>
+        {% for value in listaP %}
+        <p>Nombre Propietario: {{value}}</p>
+        {%endfor%}
+    </div>
+     <div>
+        {% for value in listaM %}
+        <p>Nombre Mascota: {{value}}</p>
+        {%endfor%}
+    </div>
+
+    <form action="/guardar" method="POST">
+        <input
+                name="nombre"
+                type="text">
+                <placeholder>Ingrese Su Nombre</placeholder>
+
+        <input
+                name="mascota"
+                type="text">
+        <placeholder>Ingrese El Nombre De Su Mascota</placeholder>
+
+        <input type="submit" value="Guardar">
+        </form>
+<div>
+    <p>Resultado De La Busqueda: {{vPro}} mascota: {{vMasco}}</p>
+     <form action="/buscar" method="POST">
+        <input
+                name="bPropietario"
+                type="text">
+                <placeholder>Ingrese Su Nombre</placeholder>
+
+        <input type="submit" value="buscar">
+        </form>
+</div>
+</body>
+</html>

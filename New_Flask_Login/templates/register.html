@@ -1,0 +1,36 @@
+{%extends 'layout.html'%}
+{%block title%} Registro {%endblock%}
+
+{%block content%}
+{%for dato in datos%}
+<div class="registro">
+    <form class="form" action="/registro" method="post">
+        <h1 class="form_titulo">Registro</h1><br>
+
+        <div class="form_group">
+            <label>Usuario: </label>
+            <input type="text" class="form-input" name="name">
+        </div>
+    </form>
+
+     <div class="form_group">
+            <label>Placa: </label>
+            <input type="text" class="form-input" name="name">
+        </div>
+    </form>
+
+ <div class="form_group">
+            <label>Revisiones: </label>
+            <input type="text" class="form-input" name="name">
+        </div>
+
+    <div class="form-group">
+ <button class="boton">Registrarse</button>
+    </div>
+
+    </form>
+
+
+</div>
+{%endfor%}
+{% endblock %}

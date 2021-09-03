@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+<link rel="stylesheet" type="text/css" href="static/estilo.css">
+{% block head %}
+    <title>Editando</title>
+{% endblock %}
+
+{% block body %}
+    <h1>Editar el registro de mascotas #{{student.id}}</h1>
+<div class="contenedor">
+    <form action="/editar/{{ student.id }}" method="POST">
+        <input type="text" name="name" value="{{ student.name }}">
+        <input type="text" name="surname" value="{{ student.surname }}">
+        <input type="submit" value="Editar Mascota">
+    </form>
+    <div class="tabla">
+{% endblock %}

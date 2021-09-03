@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio De Sesion</title>
+</head>
+<body>
+
+<h1>Inicio De Sesion</h1>
+
+{% for value in lUs%}
+<p>{{value}}</p>
+{% endfor %}
+
+{% for value in lPl%}
+<p>{{value}}</p>
+{% endfor %}
+
+{% for value in lRe%}
+<p>{{value}}</p>
+{% endfor %}
+
+<form action="/login" method="POST">
+    <input name="usuario" type="text" placeholder="Usuario"/>
+    <input name="placa" type="text" placeholder="Placa"/>
+    <input type="submit" value="iniciar">
+</form>
+</body>
+</html>

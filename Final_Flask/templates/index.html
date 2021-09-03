@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <link rel="stylesheet" type="text/css" href="static/aspecto.css">
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+</head>
+<body>
+<div class="header">
+<h1>Registro De Motos :D</h1>
+
+ <p>{{error}}</p>
+<div style="display: inline-block;">
+    <b>Usuario</b>
+{% for value in Usuario%}
+<p>{{value}}</p>
+{%endfor%}
+</div>
+
+<div style="display: inline-block;">
+    <b>Placa</b>
+{% for value in Placa%}
+<p>{{value}}</p>
+{%endfor%}
+</div>
+
+<div style="display: inline-block;">
+    <b>Numero De Revisiones</b>
+{% for value in Revisiones%}
+<p>{{value}}</p>
+{%endfor%}
+</div>
+
+<form action="/login" method="post">
+    <input name="usuario" type="text" placeholder="Usuario">
+    <input name="placa" type="text" placeholder="Placa">
+
+    <input type="submit" value="iniciar">
+</form>
+</body>
+</html>

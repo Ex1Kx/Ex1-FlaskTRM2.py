@@ -1,0 +1,189 @@
+<html>
+<head>
+    <title>Caja</title>
+    <link href='\static\css\bootstrap.css' rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{{url_for('home')}}" method="POST">Facturacion</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <a class="navbar-brand" href="{{url_for('logout')}}" method="POST">Cerrar Caja</a>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class = "container">
+        <h2>Bienvenido!</h2>
+    </div>
+    <div class = "container">
+        <div class = "row">
+            {% with messages = get_flashed_messages()%}
+                {% if messages%}
+                    {% for message in messages %}
+                        <div class="alert alert-info alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>{{message}}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+
+    <h4>
+    <div class="container">
+        <div class = "row">
+            <form method="POST">
+            <div class = "col md-12">
+                <div class="form-group">
+                    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#addProductModal">
+                        <span>Añadir un producto</span>
+                    </button>
+                    <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#updateProductModal">
+                        <span>Actualizar el producto</span>
+                    </button>
+                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteProductModal">
+                        <span>Borrar el producto</span>
+                    </button>
+
+                        <button  class=" btn btn-info" formaction="{{url_for('searchall')}}">
+                            <span>Ver todos los productos</span>
+                        </button>
+
+                    <button class="btn btn-info" formaction = "{{url_for('search')}}">
+                        <span>Buscar producto por codigo</span>
+                    </button>
+                    <input class = "form-group" type="text" placeholder="Buscar producto por codigo" name="searchprod" size="30">
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    </h4>
+    <div class = "container">
+        <h5>
+            <table class="table">
+                <tr>
+                  <th>Codigo de producto</th>
+                  <th>Nombre del producto</th>
+                  <th>Precio</th>
+                  <th>Total</th>
+                </tr>
+                {% for row in products %}
+
+                <tr>
+                    <td>{{row.0}}</td>
+                    <td>{{row.1}}</td>
+                    <td>{{row.2}}</td>
+                    <td>{{row.3}}</td>
+                </tr>
+                 {% endfor %}
+                {% for row in prodnames %}
+                <tr>
+                 <td>{{row.0}}</td>
+                 <td>{{row.1}}</td>
+                 <td>{{row.2}}</td>
+                 <td>{{row.3}}</td>
+                </tr>
+                 {% endfor %}
+            </table>
+        </h5>
+    </div>
+
+    <div id="addProductModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <form action="{{url_for('insert')}}" method="POST" class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Añadir productos</h4>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+            <div class="form-group">
+              <label>Nombre</label>
+              <input class="form-control" type="text" name="Nombre" value="" required/>
+            </div>
+            <div class="form-group">
+              <label>Precio</label>
+              <input class="form-control" type="text" name="Precio" value="" required/>
+            </div>
+            <div class="form-group">
+              <label>Cantidad</label>
+              <input class="form-control" type="text" name="Cantidad" value="" required/>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar Compra</button>
+            <button type="submit" class="btn btn-success">Guadar Compra</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="updateProductModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+            <form action="{{url_for('update')}}" method="POST" class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Actualizar el producto</h4>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+              <div class="form-group">
+
+              <label>Nombre de producto</label>
+              <input class="form-control" type="text" name="namess" value="" required/><br>
+              </div>
+               <div class="form-group">
+
+                   <label>Precio</label>
+
+              <input class="form-control" type="text" name="pricee" value="" required/><br>
+               </div>
+              <div class="form-group">
+                  <label>Cantidad</label>
+
+              <input class="form-control" type="text" name="quantityy" value="" required/><br>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar Compra</button>
+            <button type="submit" class="btn btn-warning">Actualizar</button>
+          </div>
+         </form>
+      </div>
+    </div>
+
+    <div id="deleteProductModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <form action="{{url_for('delete')}}" method="POST" class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Borrar producto</h4>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+            <div class="form-group">
+              <label>Nombre de producto</label>
+              <input class="form-control" type="text" name="prodsname" value="" required/>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-danger">Borrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+</body>
+
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+</html>

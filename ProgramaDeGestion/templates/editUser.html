@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<title>Edicion De Clientes</title>
+		<link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+	</head>
+	<body>
+	<h1>Actualizacion De Datos🙃</h1>
+		<form action='' method='post'>
+			<label>Nombre:</label>
+			<input type="text" name="name" value="{{datas.NAME}}"   required>
+			<label>Celular:</label>
+			<input type="text" name="age" value="{{datas.AGE}}"  required>
+			<label>Saldo:</label>
+			<input type="text" name="city" value="{{datas.CITY}}"  required>
+			<input type='submit' value='Actualizar El Cliente'>
+
+		</form>
+	</body>
+</html>
